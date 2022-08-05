@@ -162,6 +162,10 @@ unpackStr (Number s) = return $ show s
 unpackStr (Bool s) = return $ show s
 unpackStr notString = throwError $ TypeMismatch "string" notString
 
+unpackBool :: LispVal -> ThrowsError Bool
+unpackBool (Bool b) = return b
+unpackBool notBool = throwError $ TypeMismatch "boolean" notBool
+
 showError :: LispError -> String
 showError (UnboundVar message varname) = message ++ ": " ++ varname
 showError (BadSpecialForm message form) = message ++ ": " ++ show form
